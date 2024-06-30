@@ -22,6 +22,6 @@ app.use("/api/releases", routes);
 // Connect Database
 connectDB();
 
-const port = 8082;
+const port = process.env.PORT || 8082;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
