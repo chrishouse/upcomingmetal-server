@@ -25,3 +25,10 @@ connectDB();
 const port = process.env.PORT || 8082;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
+// Prevent Heroku app from sleeping
+const http = require('http');
+
+setInterval(() => {
+  http.get("https://upcomingmetal-prd-6275f039f0a0.herokuapp.com/api/releases/upcoming?genre=all&type=all");
+}, 25 * 60 * 1000); // every 25 minutes
