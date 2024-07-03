@@ -10,7 +10,25 @@ const upcoming = (req, res) => {
   if (req.query.type !== "all") {
     options.type = { "$regex": req.query.type, "$options": "i" };
   }
-	Data.find(options)
+	Data.UpcomingData.find(options)
+		.then((data) => {
+			if (!data) {
+				return res.status(404).json({ error: "No items found" });
+			}
+			res.json(data);
+		})
+		.catch(() => res.status(404).json({ error: "No items found" }));
+};
+
+const recent = (req, res) => {
+  let options = {};
+  if (req.query.genre !== "all") {
+    options.genre = { "$regex": req.query.genre, "$options": "i" };
+  }
+  if (req.query.type !== "all") {
+    options.type = { "$regex": req.query.type, "$options": "i" };
+  }
+	Data.RecentData.find(options)
 		.then((data) => {
 			if (!data) {
 				return res.status(404).json({ error: "No items found" });
@@ -30,4 +48,5 @@ const refreshDB = (req, res) => {
 };
 
 exports.upcoming = upcoming;
+exports.recent = recent;
 exports.refreshDB = refreshDB;

@@ -8,4 +8,5 @@ const ReleaseSchema = {
 	date: String
 };
 
-module.exports = mongoose.model("Release", ReleaseSchema);
+exports.UpcomingData = mongoose.model("Upcomingrelease", ReleaseSchema);
+exports.RecentData = mongoose.model("Recentrelease", ReleaseSchema);

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Data = require("../models/Data");
 const getMetal = require("../get-metal");
 
 const connectDB = async () => {
@@ -10,8 +9,9 @@ const connectDB = async () => {
 		);
 		console.log("MongoDB is Connected...");
 
-		// Run the get-metal script every 4 hours
-		setInterval(getMetal, 1000 * 60 * 60 * 4);
+		// Run the get-metal script every 6 hours
+		setInterval(getMetal.getUpcoming, 1000 * 60 * 60 * 6);
+		setInterval(getMetal.getRecent, 1000 * 60 * 60 * 6);
 
 	} catch (err) {
 		console.error(err.message);
