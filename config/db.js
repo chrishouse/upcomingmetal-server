@@ -10,8 +10,8 @@ const connectDB = async () => {
 		console.log("MongoDB is Connected...");
 
 		// Run the get-metal script every 6 hours
-		setTimeout(getMetal.getUpcoming, 1000 * 60 * 60 * 6);
-		setTimeout(getMetal.getRecent, 1000 * 60 * 60 * 6);
+		setInterval(getMetal.getUpcoming, 1000 * 60 * 60 * 6);
+		setInterval(getMetal.getRecent, 1000 * 60 * 60 * 6);
 		getMetal.getUpcoming();
 		getMetal.getRecent();
 
